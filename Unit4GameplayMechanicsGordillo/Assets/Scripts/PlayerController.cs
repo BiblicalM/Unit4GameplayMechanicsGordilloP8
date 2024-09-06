@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public bool hasPowerup;
     public float powerupStrength = 15.0f;
     public GameObject powerupIndicator;
+    private string powerupType;
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && hasPowerup)
+        if (collision.gameObject.CompareTag("Enemy") && hasPowerup && powerupType == "Bump")
         {
             Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
