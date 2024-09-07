@@ -40,6 +40,10 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             StartCoroutine(PowerupCountdownRoutine());
             powerupIndicator.SetActive(true);
+            if (other.GetComponent<Powerup>().powerupName == "Bump")
+            {
+                powerupType = "Bump";
+            }
         }
     }
 
