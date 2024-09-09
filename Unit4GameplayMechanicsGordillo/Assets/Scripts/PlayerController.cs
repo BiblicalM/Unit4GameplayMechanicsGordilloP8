@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
     public GameObject powerupIndicator;
     private string powerupType;
 
+    public GameObject rocketPrefab;
+    private GameObject tmpRocket;
+    private Coroutine powerupCountdown;
+
     // Start is called before the first frame update
     void Start()
     {
