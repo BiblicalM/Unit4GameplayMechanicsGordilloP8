@@ -380,6 +380,7 @@ MonoBehaviour:
   hasPowerup: 0
   powerupStrength: 15
   powerupIndicator: {fileID: 282918674}
+  rocketPrefab: {fileID: 3123554977161876301, guid: 61843db783fefa741a756eebc1484011, type: 3}
 --- !u!1001 &282918673
 PrefabInstance:
   m_ObjectHideFlags: 0
