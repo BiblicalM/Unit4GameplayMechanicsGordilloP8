@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public GameObject rocketPrefab;
     private GameObject tmpRocket;
     private Coroutine powerupCountdown;
+
+    public string gameOverSceneName;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +41,11 @@ public class PlayerController : MonoBehaviour
         if (powerupType == "Shoot" && Input.GetKeyDown(KeyCode.UpArrow))
         {
             LaunchRockets();
+        }
+
+        if (transform.position.y < -4)
+        {
+            SceneManager.LoadScene(gameOverSceneName);
         }
     }
 
