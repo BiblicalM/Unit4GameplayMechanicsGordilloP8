@@ -170,6 +170,7 @@ MonoBehaviour:
   powerupPrefabs:
   - {fileID: 5674440365718348911, guid: 8d4080ed98901ac49971cbe886d19f2e, type: 3}
   - {fileID: 5674440365718348911, guid: 40ace6e2cd4c5084aa01320668790a62, type: 3}
+  - {fileID: 5674440365718348911, guid: 565aabf882766484ea960a2f5ef08ca8, type: 3}
   enemyCount: 0
   waveNumber: 1
 --- !u!1001 &245963551
@@ -381,6 +382,10 @@ MonoBehaviour:
   powerupStrength: 15
   powerupIndicator: {fileID: 282918674}
   rocketPrefab: {fileID: 3123554977161876301, guid: 61843db783fefa741a756eebc1484011, type: 3}
+  hangTime: 0.3
+  smashSpeed: 60
+  explosionForce: 70
+  explosionRadius: 20
   gameOverSceneName: GameOver
 --- !u!1001 &282918673
 PrefabInstance:

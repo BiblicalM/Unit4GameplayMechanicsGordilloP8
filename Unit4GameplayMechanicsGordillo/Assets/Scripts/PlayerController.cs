@@ -17,6 +17,13 @@ public class PlayerController : MonoBehaviour
     private GameObject tmpRocket;
     private Coroutine powerupCountdown;
 
+    public float hangTime;
+    public float smashSpeed;
+    public float explosionForce;
+    public float explosionRadius;
+    bool smashing = false;
+    float floorY;
+
     public string gameOverSceneName;
 
     // Start is called before the first frame update
@@ -41,6 +48,12 @@ public class PlayerController : MonoBehaviour
         if (powerupType == "Shoot" && Input.GetKeyDown(KeyCode.UpArrow))
         {
             LaunchRockets();
+        }
+
+        if (powerupType == "Smash" && Input.GetKeyDown(KeyCode.Space) && !smashing)
+        {
+            smashing = true;
+            StartCoroutine(Smash());
         }
 
         if (transform.position.y < -4)
@@ -92,5 +105,35 @@ public class PlayerController : MonoBehaviour
             tmpRocket = Instantiate(rocketPrefab, transform.position + Vector3.up, Quaternion.identity);
             tmpRocket.GetComponent<RocketBehavior>().Fire(enemy.transform);
         }
+    }
+
+    IEnumerator Smash()
+    {
+        var enemies = FindObjectsOfType<Enemy>();
+
+        floorY = transform.position.y;
+
+        float jumpTime = Time.time + hangTime;
+        while(Time.time < jumpTime)
+        {
+            playerRb.velocity = new Vector2(playerRb.velocity.x, smashSpeed);
+            yield return null;
+        }
+
+        while(transform.position.y > floorY)
+        {
+        playerRb.velocity = new Vector2(playerRb.velocity.x, -smashSpeed * 2);
+        yield return null;
+        }
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            if(enemies[i] != null)
+            {
+                enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius, 0.0f, ForceMode.Impulse);
+            }
+        }
+
+            smashing = false;
     }
 }
